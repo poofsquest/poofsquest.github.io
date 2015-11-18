@@ -133,13 +133,13 @@
 					<h2>Sign up for beta access</h2>
 					<p>Keep up to date and apply for our closed beta!</p>
 
-					<form>
+					<form action="//formspree.io/poofsquest.forms@gmail.com" method="POST">
 						<div class="row uniform 50%">
 							<div class="8u 12u(mobilep)">
 								<input type="email" name="email" id="email" placeholder="Email Address" />
 							</div>
 							<div class="4u 12u(mobilep)">
-								<input type="button" value="Sign Up" class="fit" onclick="formResult()" />
+								<input type="submit" value="Sign Up" class="fit" />
 							</div>
 						</div>
 					</form>
@@ -176,7 +176,7 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 			<script>
-				function formResult(){
+				/*function formResult(){
 					var xhttp;
 					if (window.XMLHttpRequest) {
 					    xhttp = new XMLHttpRequest();
@@ -194,7 +194,25 @@
 					var email = document.getElementById("email").value;
 					var toSend = "email=" + email;
 					xhttp.send(toSend);
-				}
+				}*/
+				$( document ).ready(
+					var request = $.ajax({
+				    url: "//formspree.io/poofsquest.forms@gmail.com", 
+				    method: "POST",
+				    data: {email: $('.email').val()},
+				    dataType: "json"
+					});
+
+					/*request.done(function(msg)
+					{
+					     alert( "You have successfully subscribed to our mailing list." );
+					});
+
+					subscribeRequest.fail(function(jqXHR, textStatus)
+					{
+					     alert( "We could not subscribe you please try again or contact us if the problem persists (" + textStatus + ")." );
+					});*/
+				)
 			</script>
 	</body>
 </html>
