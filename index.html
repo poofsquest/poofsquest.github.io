@@ -12,6 +12,9 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<!--next line is to put a image in the tab. put the href=localToImg-->
+		<!--<link rel="shortcut icon" href="#">-->
 	</head>
 	<body class="landing">
 		<div id="page-wrapper">
@@ -136,10 +139,14 @@
 								<input type="email" name="email" id="email" placeholder="Email Address" />
 							</div>
 							<div class="4u 12u(mobilep)">
-								<input type="submit" value="Sign Up" class="fit" />
+								<input type="button" value="Sign Up" class="fit" onclick="formResult()" />
 							</div>
 						</div>
 					</form>
+
+					<div id="formResponse">
+
+					</div>
 
 				</section>
 
@@ -147,7 +154,7 @@
 				<footer id="footer">
 					<ul class="icons">
 						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="https://www.facebook.com/poofsquest" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<!--	<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li> -->
 					<!-- <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
 					<!--	<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li> -->
@@ -168,6 +175,29 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+			<script>
+				function formResult(){
+					var xhttp;
+					if (window.XMLHttpRequest) {
+					    xhttp = new XMLHttpRequest();
+					    } else {
+					    // code for IE6, IE5
+					    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					/*xhttp.onreadystatechange = function() {
+					    if (xhttp.readyState == 4 && xhttp.status == 200) {
+					        document.getElementById("formResponse").innerHTML = xhttp.responseText;
+					    }
+					};*/
+					xhttp.open("POST", "//formspree.io/poofsquest.forms@gmail.com", false);
+					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					var email = document.getElementById("email").value;
+					var toSend = "email=" + email;
+					xhttp.send(toSend);
+					if (xhttp.readyState == 4 && xhttp.status == 200) {
+					    document.getElementById("formResponse").innerHTML = xhttp.responseText;
+					}
+				}
+			</script>
 	</body>
 </html>
