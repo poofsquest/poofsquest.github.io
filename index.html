@@ -133,10 +133,10 @@
 					<h2>Sign up for beta access</h2>
 					<p>Keep up to date and apply for our closed beta!</p>
 
-					<form action="//formspree.io/poofsquest.forms@gmail.com" method="POST">
+					<form id="signup-form" action="//formspree.io/poofsquest.forms@gmail.com" method="POST">
 						<div class="row uniform 50%">
 							<div class="8u 12u(mobilep)">
-								<input type="email" name="email" id="email" placeholder="Email Address" />
+								<input type="email" name="email" id="email" placeholder="Email Address" required/>
 							</div>
 							<div class="4u 12u(mobilep)">
 								<input type="submit" value="Sign Up" class="fit" />
@@ -176,42 +176,31 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 			<script>
-				/*function formResult(){
-					var xhttp;
-					if (window.XMLHttpRequest) {
-					    xhttp = new XMLHttpRequest();
-					} else {
-					    // code for IE6, IE5
-					    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-					}
-					xhttp.onreadystatechange = function() {
-					    if (xhttp.readyState == 4 && xhttp.status == 200) {
-					        document.getElementById("formResponse").innerHTML = xhttp.responseText;
-					    }
-					};
-					xhttp.open("POST", "//formspree.io/poofsquest.forms@gmail.com", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					var email = document.getElementById("email").value;
-					var toSend = "email=" + email;
-					xhttp.send(toSend);
-				}*/
-				
-					var request = $.ajax({
-				    url: "//formspree.io/poofsquest.forms@gmail.com", 
-				    method: "POST",
-				    data: {message: "hello!"},
-				    dataType: "json"
+				//this code is from https://gist.github.com/edmundojr/975b08c39ab0a7a1b514
+				var $signupForm = $('#signup-form');
+				$signupForm.submit(function(e) {
+					e.preventDefault();
+					$signupForm.find('.alert--loading').remove();
+					$signupForm.find('.alert--success').remove();
+					$signupForm.find('.alert--error').remove();
+					$.ajax({
+						url: '//formspree.io/poofsquest.forms@gmail.com',
+						method: 'POST',
+						data: $(this).serialize(),
+						dataType: 'json',
+						beforeSend: function() {
+							$signupForm.append('<div class="alert alert--loading">Processing request…</div>');
+						},
+						success: function(data) {
+							$signupForm.find('.alert--loading').hide();
+							$signupForm.append('<div class="alert alert--success">We just got your email!<br>We will send you the beta version soon!</div>');
+						},
+						error: function(err) {
+							$signupForm.find('.alert--loading').hide();
+							$signupForm.append('<div class="alert alert--error">Ops, there was an error. Try again!</div>');
+						}
 					});
-
-					/*request.done(function(msg)
-					{
-					     alert( "You have successfully subscribed to our mailing list." );
-					});
-
-					subscribeRequest.fail(function(jqXHR, textStatus)
-					{
-					     alert( "We could not subscribe you please try again or contact us if the problem persists (" + textStatus + ")." );
-					});*/
+				});
 			</script>
 	</body>
 </html>
