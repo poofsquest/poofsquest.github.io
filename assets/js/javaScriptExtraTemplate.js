@@ -14,9 +14,11 @@ $signupForm.submit(function(e) {
 			$signupForm.append('<div class="alert alert--loading">Processing request…</div>');
 		},
 		success: function(data) {
-			$signupForm.find('#email').val("Email Address");
+			$signupForm.find('#demo-name').val("Name");
+			$signupForm.find('#demo-email').val("Email Address");
+			$signupForm.find('#demo-message').val("Enter your message");
 			$signupForm.find('.alert--loading').hide();
-			$signupForm.append('<div class="alert alert--success">Thanks! We just got your email.<br>We will send you the beta version soon!</div>');
+			$signupForm.append('<div class="alert alert--success">Thanks! We just got your email.</div>');
 		},
 		error: function(err) {
 			$signupForm.find('.alert--loading').hide();
