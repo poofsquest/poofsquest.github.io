@@ -2,26 +2,23 @@
 var $signupForm = $('.signup-form');
 $signupForm.submit(function(e) {
 	e.preventDefault();
-	$signupForm.find('.alert--loading').remove();
-	$signupForm.find('.alert--success').remove();
-	$signupForm.find('.alert--error').remove();
 	var data = $(this).serializeArray();
 	var counter = 0;
 	for (key in data){
 		counter++;
 		if(data[key]){
 			if(data[key].value.trim() == ''){
-				$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
+				$signupForm.find('.alert')[0].innerHTML = "Please insert your email and try again. Thanks!";
 				return;
 			}
 		}
 		else{
-			$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
+			$signupForm.find('.alert')[0].innerHTML = "Please insert your email and try again. Thanks!";
 			return;
 		}
 	}
 	if (counter != 1){
-		$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
+		$signupForm.find('.alert')[0].innerHTML = "Please insert your email and try again. Thanks!";
 		return;
 	}
 	$.ajax({
@@ -30,15 +27,15 @@ $signupForm.submit(function(e) {
 		data: $(this).serialize(),
 		dataType: 'json',
 		beforeSend: function() {
-			$signupForm.append('<div class="alert alert--loading">Processing request…</div>');
+			$signupForm.find('.alert')[0].innerHTML = "Processing request…";
 		},
 		success: function(data) {
-			$signupForm.find('.alert--loading').hide();
-			$signupForm.append('<div class="alert alert--success">Thanks! We just got your email.</div>');
+			$signupForm.find('.alert')[0].innerHTML = "Thanks! We will send you the beta version soon.";
+			
 		},
 		error: function(err) {
-			$signupForm.find('.alert--loading').hide();
-			$signupForm.append('<div class="alert alert--error">Ops, there was an error. Please try again!</div>');
+			$signupForm.get(0).reset();
+			$signupForm.find('.alert')[0].innerHTML = "Ops, there was an error. Please try again!";
 		}
 	});
 });
