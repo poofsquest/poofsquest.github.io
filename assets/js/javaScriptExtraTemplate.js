@@ -11,17 +11,17 @@ $signupForm.submit(function(e) {
 		counter++;
 		if(data[key]){
 			if(data[key].value.trim() == ''){
-				$signupForm.append("<div class='alert alert--error'>Please fill all the information and try again. Thanks!</div>");
+				$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
 				return;
 			}
 		}
 		else{
-			$signupForm.append("<div class='alert alert--error'>Please fill all the information and try again. Thanks!</div>");
+			$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
 			return;
 		}
 	}
-	if (counter != 3){
-		$signupForm.append("<div class='alert alert--error'>Please fill all the information and try again. Thanks!</div>");
+	if (counter != 1){
+		$signupForm.append("<div class='alert alert--error'>Please insert your email and try again. Thanks!</div>");
 		return;
 	}
 	$.ajax({
