@@ -1658,7 +1658,7 @@
 /* Form */
 
 	form {
-		margin: 0 0 2em 0;
+		margin: 0 auto;
 	}
 
 	label {
@@ -3595,7 +3595,7 @@
 			-webkit-order: 2;
 			-ms-order: 2;
 			order: 2;
-			width: 50%;
+			width: 80%;
 		}
 
 		@media screen and (max-width: 980px) {
