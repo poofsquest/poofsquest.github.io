@@ -30,6 +30,7 @@ $signupForm.submit(function(e) {
 			$signupForm.find('.alert')[0].innerHTML = "Processing request…";
 		},
 		success: function(data) {
+			$signupForm.get(0).reset();
 			$signupForm.find('.alert')[0].innerHTML = "Thanks! We will send you the beta version soon.";
 			
 		},
