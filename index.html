@@ -39,7 +39,7 @@
 											<li><a href="beta_version.html">Play the Beta version</a></li>
 										</ul>
 										<ul>
-											<li><a href="team.html">Who are we</a></li>
+											<li><a href="team.html">Who we are</a></li>
 										</ul>
 									</div>
 								</li>
@@ -220,6 +220,13 @@
 
 			  ga('create', 'UA-70505813-1', 'auto');
 			  ga('send', 'pageview');
+
+			  var a = document.getElementsByTagName(‘a’);
+			  for(i = 0; i < a.length; i++){
+			  	if (a[i].href.indexOf(location.host) == -1 && a[i].href.match(/^http:///i)){a[i].onclick = function(){
+			  		.push([‘_trackEvent’, ‘outgoing_links’, this.href.replace(/^http:///i, ”)]);
+			  	}
+			  }
 
 			</script>
 
