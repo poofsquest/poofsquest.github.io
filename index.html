@@ -142,18 +142,18 @@
 								<p>Click in one of the links bellow to download and test the game.</p>
 							</header>
 							<ul class="icons major">
-								<li>
-									<a style="font-size: large;" href="https://db.tt/lZb17llt">MacOS</a>
-								</li>
-								<li>
-									<a style="font-size: large;" href="https://db.tt/Tg0x3HZg">Windows</a>
-								</li>
-								<li>
-									<a style="font-size: large;" href="https://db.tt/6hy29xd8">Linux (x86)</a>
-								</li>
-								<li>
-									<a style="font-size: large;" href="https://db.tt/FX4jhait">Linux (x64)</a>
-								</li>
+							    <li>
+							        <a style="font-size: large;" href="https://db.tt/lZb17llt" onclick="trackOutboundLink('https://db.tt/lZb17llt'); return false;">MacOS</a>
+							    </li>
+							    <li>
+							        <a style="font-size: large;" href="https://db.tt/Tg0x3HZg" onclick="trackOutboundLink('https://db.tt/Tg0x3HZg'); return false;">Windows</a>
+							    </li>
+							    <li>
+							        <a style="font-size: large;" href="https://db.tt/6hy29xd8" onclick="trackOutboundLink('https://db.tt/6hy29xd8'); return false;">Linux (x86)</a>
+							    </li>
+							    <li>
+							        <a style="font-size: large;" href="https://db.tt/FX4jhait" onclick="trackOutboundLink('https://db.tt/FX4jhait'); return false;">Linux (x64)</a>
+							    </li>
 							</ul>
 						</div>
 						<br><br>
@@ -204,6 +204,12 @@
 
 			  ga('send', 'event', 'team', 'team', 'team');
 
+			  var trackOutboundLink = function(url) {
+			     ga('send', 'event', 'outbound', 'click', url, {
+			       'transport': 'beacon',
+			       'hitCallback': function(){document.location = url;}
+			     });
+			  }
 
 			</script>
 
